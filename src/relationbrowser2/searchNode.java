@@ -35,4 +35,27 @@ public class searchNode extends Node{
         } catch (Exception ex) {
         }
     }
+    public void search(String keyword){
+        for(int i = 0; i<nodeList.size();i++){
+            if(match(keyword,nodeList.get(i).getName())){
+                this.setNewRelation("oneWay", nodeList.get(i));
+            }
+        }
+    }
+    public boolean match(String keyword, String searching){
+        keyword = keyword.toLowerCase();
+        searching = searching.toLowerCase();
+        for(int i = 0; i <= searching.length()-keyword.length(); i++){
+            for(int j = 0; j < keyword.length(); j++){
+                if(searching.charAt(i)!=keyword.charAt(j)){
+                    break;
+                }
+                if(j == keyword.length()-1){
+                    return true;
+                }
+                i++;
+            }
+        }
+        return false;
+    }
 }
