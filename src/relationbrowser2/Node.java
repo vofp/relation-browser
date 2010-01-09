@@ -44,6 +44,9 @@ public class Node {
     public String getData(int i){
         return attriDatas.get(i);
     }
+    public String getData(String s){
+        return attriDatas.get(attriNames.indexOf(s));
+    }
     public Relation getRelations(int i){
         return relations.get(i);
     }
