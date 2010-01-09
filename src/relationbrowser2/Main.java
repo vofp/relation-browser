@@ -10,12 +10,13 @@ package relationbrowser2;
  * @author francis
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Main m = new Main();
+        //PApplet.main(new String[]{"--bgcolor=#DFDFDF", "relationbrowser.Frame"});
+    }
+    public Main() {
+        Project P = new Project();
+        P.test2();
     }
 
 }
