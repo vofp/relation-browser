@@ -19,7 +19,8 @@ public class Node {
     //Frame.Circle circle;
     // </editor-fold>  
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Def"> 
+    // <editor-fold defaultstate="collapsed" desc="Def">
+    public Node(){}
     public Node(String n) {
         name = n;
         nodeList.add(this);
@@ -79,6 +80,9 @@ public class Node {
     }
     public void setRelation(Relation r){
         relations.add(r);
+    }
+    public void setName(String n){
+        name = n;
     }
     // </editor-fold>  
     // <editor-fold defaultstate="collapsed" desc="Private"> 
