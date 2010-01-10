@@ -1,0 +1,65 @@
+NAME,Intel
+URL,http://www.intel.com/
+RELATED,Demos
+RELATED,Articles
+
+
+NAME,Articles
+description,All Articles will be connected to this node
+
+NAME,Demos
+description,All Demos will be connected to this node
+
+NAME,Smoke
+URL,http://software.intel.com/en-us/articles/smoke-game-technology-demo/
+description,Smoke is a tech demo that showcases a framework to support n-way threading of game technologies. By properly threading a game it can have more accurate physics, smarter AI, more particles, and/or a faster frame-rate. Smoke demonstrates one way to achieve better games.
+RELATED,Demos
+
+NAME,Pet Me
+URL,http://software.intel.com/en-us/videos/gdc-session-pamper-your-pets-with-cpu-power/
+description,builds on the idea of a non-combat pet. This enhances the pet to use CPU intensive cloth-simulation and a higher end CPU customer (4 core) would be able to have this pet vs lower end (2 core) would not
+RELATED,Demos
+
+NAME,Ocean Fog
+URL,http://software.intel.com/en-us/articles/ocean-fog-using-direct3d-10/
+description,Demonstrates a method of generating fog using Perlin noise.
+RELATED,Demos
+
+NAME,Kaboom
+URL,http://software.intel.com/en-us/articles/multi-threaded-fluid-simulation-for-games/
+description,Demonstrates a real-time, CPU based approach to volumetric fluid simulation. The result is a stand-alone simulator that can be used within any existing framework.
+RELATED,Demos
+
+NAME,Grass
+URL,http://software.intel.com/en-us/articles/rendering-grass-with-instancing-in-directx-10/
+description,Due to its geometric complexity, rendering grass in realtime is hard. This sample shows how to render realistic looking grass using the instancing APIs in DirectX10.
+RELATED,Demos
+
+NAME,Destroy the Castle
+URL,http://software.intel.com/en-us/blogs/2007/03/13/download-the-destroy-the-castle-demo-code-from-gdc/
+description,This demo shows a highly interactive scene while showcasing methods for threading physics, AI, and particles. This is the binary and source of a demo we created to show how games can take advantage of multi-core processors. Its dead simple - you control a cannon facing down a terrifying, lethal... castle. Knock it down, put it back up and then knock it down again!
+RELATED,Demos
+
+NAME,An Overview of Procedural Fire
+URL,http://software.intel.com/en-us/articles/an-overview-of-procedural-fire/
+RELATED,Smoke
+RELATED,Articles
+
+NAME,Multi-Core Simulation of Soft-Body Characters using Cloth
+URL,http://software.intel.com/en-us/articles/multi-core-simulation-of-soft-body-characters-using-cloth/
+RELATED,Pet Me
+RELATED,Articles
+
+NAME,Designing the Framework of a Parallel Game Engine
+URL,http://software.intel.com/en-us/articles/designing-the-framework-of-a-parallel-game-engine/
+RELATED,Smoke
+RELATED,Articles
+
+NAME,Rendering grass with Instancing in DirectX 10
+URL,http://software.intel.com/en-us/articles/rendering-grass-with-instancing-in-directx-10/
+RELATED,Grass
+RELATED,Articles
+
+NAME,Maximizing Performance with Fine-Grained Parallelism
+URL,http://software.intel.com/en-us/articles/maximizing-performance-with-fine-grained-parallelism/
+RELATED,Articles

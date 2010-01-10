@@ -1,0 +1,24 @@
+NAME,Java
+description,Java is a programming language originally developed by James Gosling at Sun Microsystems and released in 1995 as a core component of Sun Microsystems' Java platform.
+RELATED,not so Awesome
+RELATED,programming
+
+NAME,Ruby
+description,Ruby is a dynamic, reflective, general purpose object-oriented programming language that combines syntax inspired by Perl with Smalltalk-like features.
+RELATED,Awesome
+RELATED,Python
+RELATED,programming
+
+NAME,C++
+description,C++ (pronounced "See plus plus") is a statically typed, free-form, multi-paradigm, compiled, general-purpose programming language.
+RELATED,not so Awesome
+RELATED,programming
+
+NAME,Python
+description,Python is a general-purpose high-level programming language.
+RELATED,Awesome
+RELATED,programming
+
+NAME,Awesome
+
+NAME,not so Awesome
