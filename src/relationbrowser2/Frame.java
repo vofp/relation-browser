@@ -10,5 +10,7 @@ import processing.core.*;
  * @author francis
  */
 public class Frame extends PApplet {
-    
+    class Circle {
+        
+    }
 }
