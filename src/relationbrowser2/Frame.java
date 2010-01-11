@@ -18,8 +18,10 @@ public class Frame extends PApplet {
     int currentX;
     int currentY;
     Circle pressedCircle = new Circle();
+    boolean pressedC;
+
     public void setup() {
-        size(500, 500);
+        size(1000, 1000);
         smooth();
         baseColor = color(200);
         Circles = new Circle[Node.nodeList.size()];
@@ -57,6 +59,7 @@ public class Frame extends PApplet {
     }
     public void Press(){
         if(pressed){
+            if()
             pressedCircle.X += mouseX - currentX;
             pressedCircle.Y += mouseY - currentY;
             currentX = mouseX;
@@ -67,6 +70,7 @@ public class Frame extends PApplet {
         pressed = true;
         for (int i = 0; i < Circles.length; i++) {
             if(Circles[i].over()){
+                pressedC = true;
                 pressedCircle = Circles[i];
                 currentX = mouseX;
                 currentY = mouseY;
