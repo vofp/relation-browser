@@ -16,7 +16,7 @@ public class Node {
     private ArrayList<Relation> relations = new ArrayList();
     private ArrayList<String> attriDatas = new ArrayList<String>();
     //int numRelated = 0;
-    //Frame.Circle circle;
+    private Frame.Circle circle;
     // </editor-fold>  
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Def">
@@ -41,22 +41,25 @@ public class Node {
     public String getName(){
         return name;
     }
+    public Frame.Circle getCircle(){
+        return circle;
+    }
     public String getData(int i){
         return attriDatas.get(i);
     }
     public String getData(String s){
         return attriDatas.get(attriNames.indexOf(s));
     }
-    public Relation getRelations(int i){
+    public Relation getRelation(int i){
         return relations.get(i);
     }
     public int numRelations(){
         return relations.size();
     }
-    public Node[] getRelated(){
+    public Node[] getRelations(){
         Node[] relatedNodes = new Node[relations.size()];
         for (int i = 0; i < relations.size(); i++) {
-            relatedNodes[i] = ((Relation) relations.get(i)).getOtherNode(this);
+            relatedNodes[i] = getRelation(i).getOtherNode(this);
         }
         return relatedNodes;
     }
@@ -110,7 +113,7 @@ public class Node {
                 System.out.println(attriDatas.get(i));
             }
         }
-        Node[] related = this.getRelated();
+        Node[] related = this.getRelations();
         System.out.println("related nodes:");
         for (int i = 0; i < related.length; i++) {
             System.out.println("   (" + i + ")" + related[i].name);
@@ -127,7 +130,7 @@ public class Node {
         }
     }
     public void displayRelated() {
-        Node[] related = this.getRelated();
+        Node[] related = this.getRelations();
         System.out.print(this.name + " is related to ");
         for (int i = 0; i < related.length; i++) {
             if (i == related.length - 1) {
