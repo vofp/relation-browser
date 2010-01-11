@@ -90,6 +90,9 @@ public class Node {
     public void setName(String n){
         name = n;
     }
+    public void setCircle(Frame.Circle c){
+        circle = c;
+    }
     // </editor-fold>  
     // <editor-fold defaultstate="collapsed" desc="Private"> 
     private static void resizeData(){

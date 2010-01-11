@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Relation {
     // <editor-fold defaultstate="collapsed" desc="Varables"> 
     // <editor-fold defaultstate="collapsed" desc="Static Varable"> 
-    static ArrayList relationList = new ArrayList();
+    static ArrayList<Relation> relationList = new ArrayList<Relation>();
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Class Varables"> 
     Node node1;

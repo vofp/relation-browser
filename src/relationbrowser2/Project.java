@@ -36,9 +36,9 @@ public class Project {
     }
     public void test2() {
         load("test.csv");
-        Node sNode = search("awesome");
-        centerNode = sNode;
-        sNode.displayRelated();
+        //Node sNode = search("awesome");
+        //centerNode = sNode;
+        //sNode.displayRelated();
     }
     public void test() {
         //Node.setData("description");
