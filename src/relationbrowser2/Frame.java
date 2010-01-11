@@ -23,6 +23,6 @@ public class Frame extends PApplet {
         
     }
     class Circle {
-        
+        int x;
     }
 }
