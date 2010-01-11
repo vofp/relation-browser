@@ -19,7 +19,7 @@ public class searchNode extends Node{
         searchNodeList.add(this);
     }
     public void displayCenter(){
-        Node[] related = this.getRelated();
+        Node[] related = this.getRelations();
         System.out.println("nodes found:");
         for (int i = 0; i < related.length; i++) {
             System.out.println("   (" + i + ")" + related[i].getName());

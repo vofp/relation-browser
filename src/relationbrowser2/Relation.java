@@ -47,7 +47,7 @@ public class Relation {
         node1 = n1;
 
         n2.setRelation(this);
-        node1 = n2;
+        node2 = n2;
     }
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Getters"> 
