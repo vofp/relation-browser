@@ -27,8 +27,30 @@ public class Frame extends PApplet {
         Circles = new Circle[Node.nodeList.size()];
         for (int i = 0; i < Node.nodeList.size(); i++) {
             Circles[i] = new Circle(Node.nodeList.get(i));
+            Circles[i].score = Node.nodeList.get(i).numRelations();
             Node.nodeList.get(i).setCircle(Circles[i]);
         }
+        for (int i = 0; i < Circles.length; i++) {
+            int max = 0;
+            Circle maxC = new Circle();
+            int index = 0;
+            for (int j = i; j < Circles.length; j++) {
+                if (Circles[j].score > max){
+                    maxC = Circles[j];
+                    max = Circles[j].score;
+                    index = j;
+                }
+            }
+            int score = Circles.length - 1;
+            Node[] relatedN = maxC.node.getRelations();
+            for (int j = 0; j < relatedN.length; j++) {
+                relatedN[j].getCircle().score += score;
+            }
+            maxC.score = 0;
+            Circles[index] = Circles[i];
+            Circles[i] = maxC;
+        }
+        System.out.println("");
         ellipseMode(CENTER);
         fontA = loadFont("CourierNew36.vlw");
         textAlign(CENTER);
@@ -59,7 +81,9 @@ public class Frame extends PApplet {
     }
     public void Press(){
         if(pressed){
-            if()
+            if(true){
+                
+            }
             pressedCircle.X += mouseX - currentX;
             pressedCircle.Y += mouseY - currentY;
             currentX = mouseX;
@@ -91,6 +115,7 @@ public class Frame extends PApplet {
         private boolean Over = false;
         private Node node;
         boolean enable = true;
+        int score;
         Circle() {
 
         }
