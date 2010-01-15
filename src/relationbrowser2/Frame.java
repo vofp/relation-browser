@@ -4,6 +4,7 @@
  */
 
 package relationbrowser2;
+import java.util.Set;
 import processing.core.*;
 /**
  *
@@ -19,47 +20,70 @@ public class Frame extends PApplet {
     int currentY;
     Circle pressedCircle = new Circle();
     boolean pressedC;
-
+    int distance = 200;
+    int movement = 20;
+    Circle centerCircle = null;
+    //Set<Circle> enabledCircle = new Set<Circle>();
+    float centerX = width / 2;
+    float centerY = height / 2;
+    Circle move_b;
+    public void test(){
+        Circle c1 = new Circle();
+        Circle c2 = new Circle();
+        c1.X = 0;
+        c1.Y = 0;
+        c2.X = 3;
+        c2.Y = 3;
+        System.out.println("Angle:");
+        System.out.println(angle(c1,c2));
+    }
     public void setup() {
-        size(1000, 1000);
+        size(1000, 600);
         smooth();
-        baseColor = color(200);
-        Circles = new Circle[Node.nodeList.size()];
-        for (int i = 0; i < Node.nodeList.size(); i++) {
-            Circles[i] = new Circle(Node.nodeList.get(i));
-            Circles[i].score = Node.nodeList.get(i).numRelations();
-            Node.nodeList.get(i).setCircle(Circles[i]);
-        }
-        for (int i = 0; i < Circles.length; i++) {
-            int max = 0;
-            Circle maxC = new Circle();
-            int index = 0;
-            for (int j = i; j < Circles.length; j++) {
-                if (Circles[j].score > max){
-                    maxC = Circles[j];
-                    max = Circles[j].score;
-                    index = j;
-                }
-            }
-            int score = Circles.length - 1;
-            Node[] relatedN = maxC.node.getRelations();
-            for (int j = 0; j < relatedN.length; j++) {
-                relatedN[j].getCircle().score += score;
-            }
-            maxC.score = 0;
-            Circles[index] = Circles[i];
-            Circles[i] = maxC;
-        }
-        System.out.println("");
         ellipseMode(CENTER);
         fontA = loadFont("CourierNew36.vlw");
         textAlign(CENTER);
         textFont(fontA, 12);
+        baseColor = color(200);
+        move_b = new Circle();
+        move_b.Size = 10;
+        move_b.X = 20;
+        move_b.Y = 20;
+        text("move",10,10);
+        Circles = new Circle[Node.nodeList.size()];
+        for (int i = 0; i < Node.nodeList.size(); i++) {
+            Circles[i] = new Circle(Node.getNode(i));
+            Circles[i].score = Node.getNode(i).numRelations();
+            Node.getNode(i).setCircle(Circles[i]);
+        }
+        centerX = width / 2;
+        centerY = height / 2;
+        Node.getNode(0).getCircle().setPoint(centerX+100,centerY+100);
+        Node.getNode(1).getCircle().setPoint(centerX,centerY+200);
+        Node.getNode(2).getCircle().setPoint(centerX,centerY);
+        Node.getNode(3).getCircle().setPoint(centerX+100,centerY-100);
+        Node.getNode(4).getCircle().setPoint(centerX,centerY-200);
+        Node.getNode(5).getCircle().setPoint(centerX-100,centerY-100);
+        Node.getNode(6).getCircle().setPoint(centerX-100,centerY+100);
 
+        /*
+        for (int i = 0; i < Node.nodeList.size(); i++) {
+            Node.getNode(i).getCircle().setupMovement(Node.getNode(i).getCircle().X-100, Node.getNode(i).getCircle().Y);
+        }
+         */
+    }
+    public void setCenterCircle(Circle nextCenter){
+        if(nextCenter != centerCircle){
+            if(nextCenter.enable){
+                float angle = atan((nextCenter.Y-centerY)/(nextCenter.X-centerX));
+                
+            }
+        }
     }
     public void draw() {
         update(mouseX, mouseY);
         background(baseColor);
+        move_b.draw();
         for (int i = 0; i < Relation.relationList.size(); i++) {
             Relation related = Relation.relationList.get(i);
             Circle circle1 = related.node1.getCircle();
@@ -91,7 +115,8 @@ public class Frame extends PApplet {
         }
     }
     public void mousePressed() {
-        pressed = true;
+
+        //pressed = true;
         for (int i = 0; i < Circles.length; i++) {
             if(Circles[i].over()){
                 pressedC = true;
@@ -99,6 +124,14 @@ public class Frame extends PApplet {
                 currentX = mouseX;
                 currentY = mouseY;
             }
+        }
+        if(pressedC){
+            float x = pressedCircle.X-centerX;
+            float y = pressedCircle.Y-centerY;
+            for (int i = 0; i < Node.nodeList.size(); i++) {
+                Node.getNode(i).getCircle().setupMovement(Node.getNode(i).getCircle().X-x, Node.getNode(i).getCircle().Y-y);
+            }
+            pressedC = false;
         }
         Press();
     }
@@ -110,12 +143,15 @@ public class Frame extends PApplet {
     public class Circle {
         int Size = 100;
         int Color = 255;
-        private float X;
-        private float Y;
+        float X;
+        float Y;
         private boolean Over = false;
         private Node node;
         boolean enable = true;
         int score;
+        float movementX;
+        float movementY;
+        boolean move = false;
         Circle() {
 
         }
@@ -138,10 +174,13 @@ public class Frame extends PApplet {
             if(!enable){
                 return;
             }
+            movement();
             fill(Color);
             ellipse(X, Y, Size, Size);
             fill(0);
-            text(node.getName(),X,Y);
+            if(node != null){
+                text(node.getName(),X,Y);
+            }
         }
         public boolean over() {
             float disX = X() - mouseX;
@@ -153,5 +192,50 @@ public class Frame extends PApplet {
             }
             return Over;
         }
+        public void setupMovement(float x, float y){
+            movementX = x;
+            movementY = y;
+            move = true;
+        }
+        public void movement(){
+            if(move){
+                float h = distance(X,Y,movementX,movementY);
+                if(h-movement>0){
+                    float scale = (h-movement) /h;
+                    X = (scale * (X - movementX) + movementX);
+                    Y = (scale * (Y - movementY) + movementY);
+                }else{
+                    X = movementX;
+                    Y = movementY;
+                    move = false;
+                }
+                
+            }
+        }
+        public void setPoint(float x,float y){
+            X = x;
+            Y = y;
+        }
+    }
+        
+    
+    public float distance(Circle circle1, Circle circle2){
+        float X_d = circle1.X - circle2.X;
+        float Y_d = circle1.Y - circle2.Y;
+        return distance(circle1.X,circle1.Y, circle2.X,circle2.Y);
+    }
+    public float distance(float X1,float Y1, float X2,float Y2){
+        float X_d = X1 - X2;
+        float Y_d = Y1 - Y2;
+        return (float) Math.sqrt(Math.pow(X_d,2)+Math.pow(Y_d,2));
+    }
+    public float angle(Circle circle1, Circle circle2){
+        float X_d = circle1.X - circle2.X;
+        float angle = 0;
+        if (X_d < 0){
+            //angle = (float) Math.PI;
+        }
+        angle += Math.acos(distance(circle1,circle2)/(2*distance));
+        return angle;
     }
 }

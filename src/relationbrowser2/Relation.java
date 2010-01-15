@@ -57,5 +57,17 @@ public class Relation {
         }
         return node1;
     }
+    static public boolean relationship(Node n1, Node n2){
+        System.out.println("n1 "+n1.getName());
+        System.out.println("n2 "+n2.getName());
+        for (int i = 0; i < n1.numRelations(); i++) {
+            System.out.println(n1.getRelation(i).getOtherNode(n1).getName());
+            if(n1.getRelation(i).getOtherNode(n1) == n2){
+                return true;
+            }
+        }
+        System.out.println("No relation");
+        return false;
+    }
     // </editor-fold> 
 }
